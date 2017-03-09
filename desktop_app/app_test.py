@@ -1,6 +1,7 @@
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from ast import literal_eval
+import requests
 import json
 import time
 
@@ -19,15 +20,10 @@ def get_message_info():
 	return list
 
 def post_message(message_info, url_post="http://kamalaldin.com/send:3000"):
-	with urlopen(url_post, urlencode(message_info).encode()) as f:
-		print(f.read().decode('utf-8'))
-	#req = Request(url_post, urlencode(message_info).encode())
-	#post = urlopen(req).read().decode()
-
+	requests.post(url_post, json = message_info)
+	
 def get_messages(url_get="http://kamalaldin.com:3000"):
-	with urlopen(url_get)as response:
-		json_message = response.read().decode("utf-8") 
-		message_info = json.loads(json_message)
+	message_info = requests.get(url_get).json()
 	return message_info
 
 def show_messages(message_info_list):
@@ -35,5 +31,6 @@ def show_messages(message_info_list):
 		print(message_info)
 		# Add formatting here
 
-post_message(get_message_info())
-show_messages(get_messages())
+#ost_message(get_message_info())
+#show_messages(get_messages())
+get_messages()
