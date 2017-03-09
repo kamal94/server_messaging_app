@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/messages');
 var Message = mongoose.model('Message', { user_name: String, chat_room: String, msg:String, date: Date});
 
+// define functions to export
 module.exports = {
 	// expects object { user_name: user_name, chat_room:chat_room, date:new Date(), msg:msg}
 	save_message(message_dict)
@@ -18,6 +19,9 @@ module.exports = {
 			}
 		})
 	},
+
+	// returns the chat history of the chat room passed, then sending a json object using 
+	// the response object passed
 	return_history(chat_room, res)
 	{
 		Message.find({ chat_room: chat_room}).exec(function(err, msgs) {

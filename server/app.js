@@ -11,8 +11,6 @@ app.get('/', function (req, res) {
 	console.log("receiving get request");
 	chat_room = req.body.chat_room;
 	message_history = database_handler.return_history(chat_room, res);
-	console.log("sending back:", message_history);
-  // res.send(message_history)
 });
 
 app.post('/send', function (req, res) {
