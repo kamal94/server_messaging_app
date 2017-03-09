@@ -12,20 +12,22 @@ def get_message_info():
 	message_info = {"sender": sender, "receiver": receiver, "date": date, "message": message}
 	return message_info
 
-def post_message(message_info, url_post="http://kamalaldin.com:3000"):
-	#json_message = json.dumps(message_info)
-	req = Request(url_post, urlencode(message_info).encode())
-	post = urlopen(req).read().decode()
+def post_message(message_info, url_post="http://kamalaldin.com/send:3000"):
+	with urlopen(url_post, urlencode(message_info).encode()) as f:
+		print(f.read().decode('utf-8'))
+	#req = Request(url_post, urlencode(message_info).encode())
+	#post = urlopen(req).read().decode()
 
-def get_message(url_get="http://kamalaldin.com:3000"):
+def get_messages(url_get="http://kamalaldin.com:3000"):
 	with urlopen(url_get)as response:
 		json_message = response.read().decode("utf-8") 
 	message_info = json.loads(json_message)
 	return message_info
 
-# Converts json (string) into a python dictionary and displays message info
-def show_messages(message_info):
-	parsed_message = literal_eval(message_info)
-	# The rest of this depends on message format upon retrieval
+def show_messages(message_info_list):
+	for message_info in message_info_list:
+		print(message_info)
+		# Add formatting here
 
-print(get_message())
+post_message(get_message_info())
+show_messages(get_messages())
