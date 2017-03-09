@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var bodyParser = require("body-parser");
-var database_handler = require(".database_handler");
+var database_handler = require("./database_handler");
 
 // enable accepting parameters in post
 app.use(bodyParser.json());
