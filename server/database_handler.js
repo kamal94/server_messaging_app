@@ -7,7 +7,7 @@ module.exports = {
 	// expects object { user_name: user_name, chat_room:chat_room, date:new Date(), msg:msg}
 	save_message(message_dict)
 	{
-		var message = new Message({ user_name: user_name, chat_room:chat_room, date:new Date(), msg:msg});
+		var message = new Message({ user_name: message_dict.user_name, chat_room: message_dict.chat_room, date:new Date(), msg:message_dict.msg});
 		console.log("saving messsage", message);
 		
 		message.save(function (err) {
