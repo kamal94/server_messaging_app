@@ -1,6 +1,10 @@
 var express = require('express');
 var app = express();
 var fs = require('fs');
+var bodyParser = require("body-parser");
+
+\\enable accepting parameters in post
+app.use(bodyParser.json());
 
 function writeFile(jsonarray)
 {
@@ -46,11 +50,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/send', function (req, res) {
-	console.log("receiving post requst");
-	console.log(req.body);
-	console.log(req.query);
-	console.log(req.params);
-	console.log("all works!")
+	console.log("receiving post requst on /send");
 	//save info to history file
 	res.send("Okay!");
 });
