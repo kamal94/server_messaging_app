@@ -1,5 +1,5 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
 var fs = require('fs');
 
 function writeFile(jsonarray)
@@ -14,14 +14,14 @@ function writeFile(jsonarray)
 		console.log(data);
 		});
 	});
-}
+};
 
 
 
 app.get('/try', function (req, res) {
 	console.log("receiving get request for /try");
 	res.send("this is the kamalaldin.com/try page");
-})
+});
 
 
 app.get('/', function (req, res) {
@@ -43,7 +43,7 @@ app.get('/', function (req, res) {
 	]
 
   res.send(message_history)
-})
+});
 
 app.post('/send', function (req, res) {
 	console.log("receiving post requst");
@@ -53,10 +53,10 @@ app.post('/send', function (req, res) {
 	var date = req.param('date');  
 	var msg = req.param('message');
 	//save info to history file
-})
+});
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
-})
+});
 
 "kamalaldin.com/send:3000"
