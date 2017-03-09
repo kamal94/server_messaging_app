@@ -18,7 +18,14 @@ function writeFile(jsonarray)
 
 
 
+app.get('/try', function (req, res) {
+	console.log("receiving get request for /try");
+	res.send("this is the kamalaldin.com/try page");
+})
+
+
 app.get('/', function (req, res) {
+	console.log("receiving get request");
 	var message_history=
 	[
 		{
@@ -39,11 +46,12 @@ app.get('/', function (req, res) {
 })
 
 app.post('/send', function (req, res) {
+	console.log("receiving post requst");
+	console.log(req.body);
 	var user_id = req.param('sender');
 	var token = req.param('receiver');
-	var geo = req.param('date');  
-	var geo = req.param('message');
-
+	var date = req.param('date');  
+	var msg = req.param('message');
 	//save info to history file
 })
 
