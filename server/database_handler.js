@@ -22,7 +22,7 @@ module.exports = {
 	{
 		Message.find({ chat_room: chat_room}, function(err, msgs) {
 			if(err) console.error("Got an error when loading message history for" + chat_room + err);
-			console.log("returning messages:", msgs);
+			console.log("returning found messages:", msgs);
 			return msgs;
 		});
 	}
