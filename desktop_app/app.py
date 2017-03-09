@@ -5,13 +5,22 @@ import json
 import time
 import requests
 
-def get_message_info():
+def send_message():
 	sender = input("Please enter your name: ")
-	receiver = input("Who would you like to send your message to? ")
-	date = time.strftime("%c")
-	message = input("Write your message: ")
-	message_info = {"sender": sender, "receiver": receiver, "date": date, "message": message}
-	return message_info
+	while True:
+		chat_room = input("What chat room would you like to enter? ")
+		print("Type 'Exit' to quit the app.\nType 'Switch' to switch chat rooms. ")
+		while True:
+			date = time.strftime("%c")
+			message = input("Write your message: ")
+			message_info = {"sender": sender, "chat_room": chat_room, "date": date, "message": message}
+			post_message(message_info)
+			if message == 'Switch':
+				break
+			if message == 'Exit':
+				return 1
+		print (list)
+	return 1
 
 def post_message(message_info, url_post="http://kamalaldin.com:3000/send"):
 	requests.post(url_post, json = message_info)
