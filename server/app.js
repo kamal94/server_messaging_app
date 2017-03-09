@@ -49,6 +49,7 @@ app.post('/send', function (req, res) {
 	console.log("receiving post requst");
 	console.log(req.body);
 	console.log(req.query);
+	console.log(req.params);
 	console.log("all works!")
 	//save info to history file
 	res.send("Okay!");
