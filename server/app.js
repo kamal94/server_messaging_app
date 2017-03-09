@@ -18,6 +18,12 @@ function writeFile(jsonarray)
 
 
 
+app.get('/try', function (req, res) {
+	console.log("receiving get request for /try");
+	res.send("this is the kamalaldin.com/try page");
+})
+
+
 app.get('/', function (req, res) {
 	console.log("receiving get request");
 	var message_history=
