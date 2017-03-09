@@ -1,33 +1,32 @@
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from ast import literal_eval
+import requests
 import json
 import time
 
-def get_message_info():
-	list= [];
-	y_n = 'y';
+def send_message():
 	sender = input("Please enter your name: ")
-	while y_n == 'y':
-		receiver = input("Who would you like to send your message to? ")
-		date = time.strftime("%c")
-		message = input("Write your message: ")
-		y_n = input("Send another message? (y/n)")
-		message_info = {"sender": sender, "receiver": receiver, "date": date, "message": message}
-		list.append(message_info)
-	print (list)
-	return list
+	while True:
+		chat_room = input("What chat room would you like to enter? ")
+		print("Type 'Exit' to quit the app.\nType 'Switch' to switch chat rooms. ")
+		while True:
+			date = time.strftime("%c")
+			message = input("Write your message: ")
+			message_info = {"sender": sender, "chat_room": chat_room, "date": date, "message": message}
+			post_message(message_info)
+			if message == 'Switch':
+				break
+			if message == 'Exit':
+				return 1
+		print (list)
+	return 1
 
-def post_message(message_info, url_post="http://kamalaldin.com/send:3000"):
-	with urlopen(url_post, urlencode(message_info).encode()) as f:
-		print(f.read().decode('utf-8'))
-	#req = Request(url_post, urlencode(message_info).encode())
-	#post = urlopen(req).read().decode()
-
+def post_message(message_info, url_post="http://kamalaldin.com:3000/send"):
+	requests.post(url_post, json = message_info)
+	
 def get_messages(url_get="http://kamalaldin.com:3000"):
-	with urlopen(url_get)as response:
-		json_message = response.read().decode("utf-8") 
-		message_info = json.loads(json_message)
+	message_info = requests.get(url_get).json()
 	return message_info
 
 def show_messages(message_info_list):
@@ -35,5 +34,5 @@ def show_messages(message_info_list):
 		print(message_info)
 		# Add formatting here
 
-post_message(get_message_info())
-show_messages(get_messages())
+send_message()
+#show_messages(get_messages())
