@@ -48,11 +48,10 @@ app.get('/', function (req, res) {
 app.post('/send', function (req, res) {
 	console.log("receiving post requst");
 	console.log(req.body);
-	var user_id = req.param('sender');
-	var token = req.param('receiver');
-	var date = req.param('date');  
-	var msg = req.param('message');
+	console.log(req.query);
+	console.log("all works!")
 	//save info to history file
+	res.send("Okay!");
 });
 
 app.listen(3000, function () {
