@@ -1,25 +1,25 @@
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from ast import literal_eval
+from multiprocessing import Process
+from threading import Thread
 import requests
 import json
 import time
 
 def send_message():
-	sender = input("Please enter your name: ")
+	user_name = input("Please enter your user name: ")
 	while True:
 		chat_room = input("What chat room would you like to enter? ")
 		print("Type 'Exit' to quit the app.\nType 'Switch' to switch chat rooms. ")
 		while True:
-			date = time.strftime("%c")
-			message = input("Write your message: ")
-			message_info = {"sender": sender, "chat_room": chat_room, "date": date, "message": message}
+			message = input(user_name + ": ")
+			message_info = {"user_name": user_name, "chat_room": chat_room, "message": message}
 			post_message(message_info)
 			if message == 'Switch':
 				break
 			if message == 'Exit':
 				return 1
-		print (list)
 	return 1
 
 def post_message(message_info, url_post="http://kamalaldin.com:3000/send"):
@@ -27,12 +27,17 @@ def post_message(message_info, url_post="http://kamalaldin.com:3000/send"):
 	
 def get_messages(url_get="http://kamalaldin.com:3000"):
 	message_info = requests.get(url_get).json()
-	return message_info
 
 def show_messages(message_info_list):
-	for message_info in message_info_list:
-		print(message_info)
-		# Add formatting here
+	message_info = get_messages()
+	#for message_info in message_info_list:
+	print(message_info['user_name'] + ": " + message_info['message'])
+	
+def hello_world(num):
+	while True:
+		time.sleep(1)
+		print(num)
 
-send_message()
-#show_messages(get_messages())
+if __name__=='__main__':
+	p1 = Process(target = get_messages()).start()
+	p2 = Process(target = send_message()).start()
