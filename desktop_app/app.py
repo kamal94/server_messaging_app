@@ -15,18 +15,9 @@ def get_message_info():
 
 def post_message(message_info, url_post="http://kamalaldin.com:3000/send"):
 	requests.post(url_post, json = message_info)
-	#request = Request(url_post, urlencode(message_info).encode())
-	#post = urlopen(request).read().decode()
-	# string = "?"
-	# for key, val in message_info.items():
-	# 	string += key+"="+val+"&"
-	# print("requesting", url_post+string)
-	# response = requests.post(url_post+string)
-
+	
 def get_messages(url_get="http://kamalaldin.com:3000"):
-	with urlopen(url_get) as response:
-		json_message = response.read().decode("utf-8") 
-	message_info = json.loads(json_message)
+	message_info = requests.get(url_get).json()
 	return message_info
 
 def show_messages(message_info_list):
