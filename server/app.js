@@ -3,30 +3,8 @@ var app = express();
 var fs = require('fs');
 var bodyParser = require("body-parser");
 
-\\enable accepting parameters in post
+// enable accepting parameters in post
 app.use(bodyParser.json());
-
-function writeFile(jsonarray)
-{
-	fs.writeFile(writeSource, "Writing to a file from node.js", {"encoding":'utf8'}, function(err){
-		if ( err ) { throw err; }
-		console.log("*** File written successfully");
-		//Now reading the same file to confirm data written
-		fs.readFile(writeSource, "utf8", function(err, data){
-		if ( err ){ throw err;}
-		console.log("*** Reading just written file");
-		console.log(data);
-		});
-	});
-};
-
-
-
-app.get('/try', function (req, res) {
-	console.log("receiving get request for /try");
-	res.send("this is the kamalaldin.com/try page");
-});
-
 
 app.get('/', function (req, res) {
 	console.log("receiving get request");
