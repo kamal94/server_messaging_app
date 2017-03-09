@@ -29,6 +29,7 @@ app.get('/', function (req, res) {
 
 app.post('/send', function (req, res) {
 	console.log("receiving post requst on /send");
+	console.log(req.body);
 	//save info to history file
 	res.send("Okay!");
 });
