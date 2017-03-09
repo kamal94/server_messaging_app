@@ -18,12 +18,12 @@ module.exports = {
 			}
 		})
 	},
-	return_history(chat_room, callback)
+	return_history(chat_room, res)
 	{
-		Message.find({ chat_room: chat_room}, function(err, msgs) {
+		Message.find({ chat_room: chat_room}).exec(function(err, msgs) {
 			if(err) console.error("Got an error when loading message history for" + chat_room + err);
 			console.log("returning found messages:", msgs);
-			callback(null, msgs);
+			res.send(msgs);
 		});
 	}
 }
