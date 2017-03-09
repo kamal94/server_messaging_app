@@ -1,0 +1,24 @@
+{
+  "name": "msg_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/app.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamal94/server_messaging_app.git"
+  },
+  "author": "kamal, jeremy, hans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kamal94/server_messaging_app/issues"
+  },
+  "homepage": "https://github.com/kamal94/server_messaging_app#readme"
+}
