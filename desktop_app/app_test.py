@@ -32,8 +32,7 @@ def send_message():
 				else:
 					message_info = {"user_name": user_name, "chat_room": CHAT_ROOM, "message": message}
 					post_message(message_info)
-				update_messages()
-	return 1
+			update_messages()
 
 # Clears the terminal in Mac, Linux, and Windows (I think).
 def clear_terminal():
@@ -52,7 +51,8 @@ def show_messages(message_info_list):
 	clear_terminal()
 	message_list = get_messages()
 	for message_info in message_list:
-		print(message_info['chat_room'] + " - " + message_info['user_name'] + ": " + message_info['msg'])
+		if message_info ['chat_room'] ==  CHAT_ROOM:
+			print(message_info['chat_room'] + " - " + message_info['user_name'] + ": " + message_info['msg'])
 
 def update_messages():
 	show_messages(get_messages())
