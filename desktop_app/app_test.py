@@ -42,10 +42,8 @@ def clear_terminal():
 
 def post_message(message_info, url_post="http://kamalaldin.com:3000/send"):
 	requests.post(url_post, json = message_info)
-	# print("sending", message_info['message'], "in room", message_info['chat_room'])
 	
 def get_messages(chat_room, url_get="http://kamalaldin.com:3000", since_minutes=5):
-	print("Receiving messages in chatroom", chat_room)
 	message_info_list = requests.get(url_get, json={"chat_room":chat_room, "since_minutes": since_minutes}).json()
 	return message_info_list
 
