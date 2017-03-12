@@ -16,9 +16,9 @@ def send_message():
 	SWITCHING = True
 	user_name = input("Please enter your user name: ")
 	while not EXITING:
-		chat_room = input("What chat room would you like to enter? ")
+		chat_room = input("What chat room would you like to enter? (general)")
 		if chat_room == "":
-			chat_room = CHAT_ROOM
+			chat_room = "general"
 		CHAT_ROOM = chat_room
 		SWITCHING = False
 		print("Type 'Exit' to quit the app.\nType 'Switch' to switch chat rooms. ")
@@ -32,8 +32,7 @@ def send_message():
 				else:
 					message_info = {"user_name": user_name, "chat_room": CHAT_ROOM, "message": message}
 					post_message(message_info)
-				update_messages()
-	return 1
+			update_messages()
 
 # Clears the terminal in Mac, Linux, and Windows (I think).
 def clear_terminal():
