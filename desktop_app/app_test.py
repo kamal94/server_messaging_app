@@ -25,7 +25,6 @@ def send_message():
 			else:
 				message_info = {"user_name": user_name, "chat_room": chat_room, "message": message}
 				post_message(message_info)
-			clear_terminal()
 
 	return 1
 
@@ -39,18 +38,19 @@ def post_message(message_info, url_post="http://kamalaldin.com:3000/send"):
 	print("sending", message_info['message'], "in room", message_info['chat_room'])
 	
 def get_messages(url_get="http://kamalaldin.com:3000"):
-	message_info = requests.get(url_get).json()
+	message_info_list = requests.get(url_get).json()
+	return message_info_list
 
 def show_messages(message_info_list):
-	message_info = get_messages()
-	#for message_info in message_info_list:
-	print(message_info['user_name'] + ": " + message_info['message'])
-	
-def hello_world(num):
-	while True:
-		time.sleep(1)
-		print(num)
+	clear_terminal()
+	message_list = get_messages()
+	for message_info in message_list:
+		print(message_info['user_name'] + ": " + message_info['message'])
 
+def update_messages():
+	show_messages(get_messages())
+	
 if __name__=='__main__':
+	clear_terminal()
 	p1 = Process(target = get_messages()).start()
 	p2 = Process(target = send_message()).start()
