@@ -22,9 +22,10 @@ module.exports = {
 
 	// returns the chat history of the chat room passed, then sending a json object using 
 	// the response object passed
-	return_history(chat_room, res)
+	return_history(chat_room, since_minutes, res)
 	{
-		Message.find({ chat_room: chat_room}).exec(function(err, msgs) {
+		since_date = new Date(new Date().getTime() - since_minutes*60000);
+		Message.find({ chat_room: chat_room, date :{$gte: new Date().}}).exec(function(err, msgs) {
 			if(err) console.error("Got an error when loading message history for" + chat_room + err);
 			console.log("returning found messages:", msgs);
 			res.send(msgs);

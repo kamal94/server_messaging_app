@@ -9,8 +9,9 @@ app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
 	console.log("receiving get request");
+	since_minutes = req.body.since_minutes;
 	chat_room = req.body.chat_room;
-	message_history = database_handler.return_history(chat_room, res);
+	message_history = database_handler.return_history(chat_room, since_minutes, res);
 });
 
 app.post('/send', function (req, res) {
