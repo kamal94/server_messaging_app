@@ -14,6 +14,10 @@ app.get('/', function (req, res) {
 	{
 		since_minutes = 5;
 	}
+	if (chat_room == undefined)
+	{
+		chat_room = "general";
+	}
 	chat_room = req.body.chat_room;
 	message_history = database_handler.return_history(chat_room, since_minutes, res);
 });
