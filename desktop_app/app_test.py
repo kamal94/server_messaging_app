@@ -7,23 +7,30 @@ import requests
 import json
 import time
 
+
 def send_message():
+	EXITING = False
+	SWITCHING = True
 	user_name = input("Please enter your user name: ")
-	while True:
+	while not EXITING:
 		chat_room = input("What chat room would you like to enter? ")
+		SWITCHING = False
 		print("Type 'Exit' to quit the app.\nType 'Switch' to switch chat rooms. ")
-		while True:
+		while not SWITCHING and not EXITING:
 			message = input(user_name + ": ")
-			message_info = {"user_name": user_name, "chat_room": chat_room, "message": message}
-			post_message(message_info)
 			if message == 'Switch':
-				break
-			if message == 'Exit':
-				return 1
+				SWITCHING = True
+			elif message == 'Exit':
+				EXITING = True
+			else:
+				message_info = {"user_name": user_name, "chat_room": chat_room, "message": message}
+				post_message(message_info)
+
 	return 1
 
 def post_message(message_info, url_post="http://kamalaldin.com:3000/send"):
 	requests.post(url_post, json = message_info)
+	print("sending", message_info['message'], "in room", message_info['chat_room'])
 	
 def get_messages(url_get="http://kamalaldin.com:3000"):
 	message_info = requests.get(url_get).json()

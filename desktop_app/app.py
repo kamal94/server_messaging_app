@@ -13,7 +13,7 @@ def send_message():
 		while True:
 			date = time.strftime("%c")
 			message = input("Write your message: ")
-			message_info = {"sender": sender, "chat_room": chat_room, "date": date, "message": message}
+			message_info = {"user_name": sender, "chat_room": chat_room, "date": date, "message": message}
 			post_message(message_info)
 			if message == 'Switch':
 				break
