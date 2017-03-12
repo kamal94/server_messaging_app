@@ -10,15 +10,20 @@ app.use(bodyParser.json());
 app.get('/', function (req, res) {
 	console.log("receiving get request");
 	since_minutes = req.body.since_minutes;
+	chat_room = req.body.chat_room;
+
+	//handle no minute request
 	if (since_minutes == undefined)
 	{
 		since_minutes = 5;
 	}
+	//handle no char room
 	if (chat_room == undefined)
 	{
 		chat_room = "general";
 	}
-	chat_room = req.body.chat_room;
+
+	//get message history
 	message_history = database_handler.return_history(chat_room, since_minutes, res);
 });
 
