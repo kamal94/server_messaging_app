@@ -25,8 +25,8 @@ def send_message():
 def post_message(message_info, url_post="http://kamalaldin.com:3000/send"):
 	requests.post(url_post, json = message_info)
 	
-def get_messages(url_get="http://kamalaldin.com:3000", chat_room="Testing", since_minutes=5):
-	message_info = requests.get(url_get, json={"chat_room":chat_room, since_minutes: since_minutes}).json()
+def get_messages(url_get="http://kamalaldin.com:3000", chat_room="general", since_minutes=5):
+	message_info = requests.get(url_get, json={"chat_room":chat_room, "since_minutes": since_minutes}).json()
 	return message_info
 
 def show_messages(message_info_list):
