@@ -23,7 +23,7 @@ def send_message():
 			chat_room = default_chatroom
 		CHAT_ROOM = chat_room
 		SWITCHING = False
-		print("Type 'Exit' to quit the app.\nType 'Switch' to switch chat rooms. ")
+		update_messages()
 		while not SWITCHING and not EXITING:
 			message = input(chat_room + " - " + user_name + ": ")
 			if (message.replace(" ","") == '') == False:
@@ -51,6 +51,7 @@ def get_messages(chat_room, url_get="http://kamalaldin.com:3000", since_minutes=
 
 def show_messages(message_info_list):
 	clear_terminal()
+	print("Type 'Exit' to quit the app.\nType 'Switch' to switch chat rooms. ")
 	for message_info in message_info_list:
 		print(message_info['chat_room'] + " - " + message_info['user_name'] + ": " + message_info['msg'])
 
