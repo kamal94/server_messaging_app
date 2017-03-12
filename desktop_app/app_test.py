@@ -24,14 +24,15 @@ def send_message():
 		print("Type 'Exit' to quit the app.\nType 'Switch' to switch chat rooms. ")
 		while not SWITCHING and not EXITING:
 			message = input(user_name + ": ")
-			if message == 'Switch':
-				SWITCHING = True
-			elif message == 'Exit':
-				EXITING = True
-			else:
-				message_info = {"user_name": user_name, "chat_room": CHAT_ROOM, "message": message}
-				post_message(message_info)
-			update_messages()
+			if (message.replace(" ","") == '') == False:
+				if message == 'Switch':
+					SWITCHING = True
+				elif message == 'Exit':
+					EXITING = True
+				else:
+					message_info = {"user_name": user_name, "chat_room": CHAT_ROOM, "message": message}
+					post_message(message_info)
+				update_messages()
 
 	return 1
 
