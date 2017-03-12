@@ -16,9 +16,9 @@ def send_message():
 	SWITCHING = True
 	user_name = input("Please enter your user name: ")
 	while not EXITING:
-		chat_room = input("What chat room would you like to enter? ")
+		chat_room = input("What chat room would you like to enter? (general)")
 		if chat_room == "":
-			chat_room = CHAT_ROOM
+			chat_room = "general"
 		CHAT_ROOM = chat_room
 		SWITCHING = False
 		print("Type 'Exit' to quit the app.\nType 'Switch' to switch chat rooms. ")
