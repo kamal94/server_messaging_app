@@ -6,7 +6,7 @@ from threading import Thread
 import requests
 import json
 import time
-
+import os
 
 def send_message():
 	EXITING = False
@@ -25,8 +25,14 @@ def send_message():
 			else:
 				message_info = {"user_name": user_name, "chat_room": chat_room, "message": message}
 				post_message(message_info)
+			clear_terminal()
 
 	return 1
+
+# Clears the terminal in Mac, Linux, and Windows (I think).
+def clear_terminal():
+	os.system('cls||clear')
+
 
 def post_message(message_info, url_post="http://kamalaldin.com:3000/send"):
 	requests.post(url_post, json = message_info)
