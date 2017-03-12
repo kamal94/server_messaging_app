@@ -61,4 +61,3 @@ def update_messages():
 if __name__=='__main__':
 	clear_terminal()
 	p2 = Process(target = send_message()).start()
-	p1 = Process(target = update_messages()).start()
